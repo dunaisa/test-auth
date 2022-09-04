@@ -1,0 +1,6 @@
+.pagination__lists {
+  display: flex;
+  grid-column: 2;
+  padding: 0;
+  margin: 0;
+}

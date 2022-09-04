@@ -1,0 +1,15 @@
+.pagination__btn-page {
+  width: 50px;
+  outline: none;
+  height: 25px;
+}
+
+.pagination__btn-page:first-child {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.pagination__btn-page:last-child {
+  grid-column: 3;
+  grid-row: 1;
+}

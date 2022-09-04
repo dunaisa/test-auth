@@ -1,0 +1,4 @@
+.pagination__container {
+  display: grid;
+    grid-template-rows: 35px;
+}
