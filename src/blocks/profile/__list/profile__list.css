@@ -1,0 +1,10 @@
+.profile__list {
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.8s;
+  color: black;
+}
+
+.profile__list:hover {
+  opacity: .8;
+}

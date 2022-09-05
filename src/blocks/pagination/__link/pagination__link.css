@@ -1,0 +1,11 @@
+.pagination__link {
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 400;
+}
+
+.pagination__link:hover {
+  background-color: #efefef;
+}
+

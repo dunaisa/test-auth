@@ -36,21 +36,8 @@ const Register = ({ onRegister }) => {
     <div className="register">
       <h3 className="register__heading">Регистрация</h3>
 
-      {/* <p className="register__error">{message}</p> */}
-
       <form action="post" className="register-form" onSubmit={handleSubmit}>
         <fieldset className="register-form__fieldset">
-
-          {/* <label htmlFor="username" className="register-form__field">
-            <input
-              className="register-form__text"
-              id="username"
-              name="userName"
-              type="text"
-              value={userName}
-              onChange={handleNameChange}
-              placeholder="Логин" />
-          </label> */}
 
           <label htmlFor="email" className="register-form__field">
             <input
@@ -73,17 +60,6 @@ const Register = ({ onRegister }) => {
               onChange={handlePasswordChange}
               placeholder="Пароль" />
           </label>
-
-          {/* <label htmlFor="confirmPassword" className="register-form__field">
-            <input
-              className="register-form__text"
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-              placeholder="Повторите пароль" />
-          </label> */}
 
         </fieldset>
 
