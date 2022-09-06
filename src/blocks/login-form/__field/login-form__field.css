@@ -1,4 +1,11 @@
 .login-form__field {
-  padding: 0;
   margin-bottom: 30px;
+  position: relative;
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .login-form__field {
+    padding-bottom: 9px;
+  }
 }

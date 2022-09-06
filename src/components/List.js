@@ -4,7 +4,7 @@ import Table from './Table';
 import Search from './Search';
 import Loader from './Loader';
 
-//import Pagination from './Pagination'
+
 
 const List = () => {
 
@@ -16,35 +16,52 @@ const List = () => {
     setQuery(e.target.value)
   }
 
+  ////Стейт изначального списка
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setData(dataConfig)
+  })
+
   ////Поиск по списку
 
   const positionsArray = ["Name"]
 
-  function search(dataConfig) {
 
-    return dataConfig.filter((item) =>
-      // positionsArray.some((key) => item[key].toLowerCase().includes(query.toLowerCase()))
-      positionsArray.some((key) => item[key].toLowerCase().includes(query.toLowerCase()))
+  function search(data) {
+
+    return data.filter((item) =>
+      positionsArray.some((key) => item[key].toLowerCase().startsWith(query.toLowerCase()))
     )
   }
 
+  ///Сортировка списка  
 
-  ///Сортировка списка
+  // Изменение направления списка
 
-  const [dataList, setDataList] = useState([]);
-
-  useEffect(() => {
-    setDataList(dataConfig);
-    setIsLoading(false);
-  }, [dataConfig]);
+  const [directionData, setDitertionData] = useState(true);
 
   const sortData = (field) => {
-    console.log(field)
-    const copyDataName = dataList.concat();
-    const sortData = copyDataName.sort(function (a, b) { return a[field] > b[field] ? 1 : -1 });
-    console.log(sortData)
-    setDataList(sortData)
+
+    const copyDataName = data.concat();
+
+    let sortData;
+
+    if (directionData) {
+      sortData = copyDataName.sort((a, b) => { return a[field] > b[field] ? 1 : -1 });
+    } else {
+      sortData = copyDataName.reverse((a, b) => { return a[field] > b[field] ? 1 : -1 });
+    }
+
+    setData(sortData);
+    setDitertionData(!directionData);
   }
+
+  useEffect(() => {
+    setData(data);
+    setIsLoading(false);
+  }, [data]);
 
 
 
@@ -54,7 +71,7 @@ const List = () => {
 
       <Search query={query} handleInputChange={handleInputChange} />
 
-      {isLoading ? <Loader /> : <Table data={dataList} search={search} sortData={sortData} />}
+      {isLoading ? <Loader /> : <Table data={data} search={search} sortData={sortData} />}
 
     </main>
   );

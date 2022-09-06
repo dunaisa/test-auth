@@ -16,6 +16,12 @@ const App = () => {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
+  //Проверка на совпадение текущего токена с отправленным ранее при длит нахождении на стр
+
+  useEffect(() => {
+    tokenCheck()
+  }, [loggedIn])
+
   const history = useHistory();
 
   function handleOnRegister({ password, email }) {
@@ -40,7 +46,6 @@ const App = () => {
 
       setLoggedIn(true);
       history.push('/');
-
     } else {
       localStorage.removeItem('currentemail');
       localStorage.removeItem('currentpassword');
@@ -55,11 +60,7 @@ const App = () => {
     history.push('/sign-in');
   }
 
-  //Проверка на совпадение текущего токена с отправленным ранее при длит нахождении на стр
 
-  useEffect(() => {
-    tokenCheck()
-  }, [loggedIn])
 
   function tokenCheck(email) {
     // если у пользователя есть текущая почта в localStorage

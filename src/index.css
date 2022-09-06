@@ -35,8 +35,12 @@
 @import url(./blocks/login-form/login-form.css);
 @import url(./blocks/login-form/__fieldset/login-form__fieldset.css);
 @import url(./blocks/login-form/__field/login-form__field.css);
-@import url(./blocks/login-form/__text/login-form__text.css);
 @import url(./blocks/login-form/__btn/login-form__btn.css);
+@import url(./blocks/login-form/__btn/_disabled/login-form__btn_disabled.css);
+@import url(./blocks/login-form/__input/login-form__input.css);
+@import url(./blocks/login-form/__input/_type/_error/login-form__input_type_error.css);
+@import url(./blocks/login-form/__text/login-form__text.css);
+@import url(./blocks/login-form/__text/_type/_error/login-form__text_type_error.css);
 
 @import url(./blocks/main/main.css);
 

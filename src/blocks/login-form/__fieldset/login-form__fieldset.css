@@ -1,8 +1,13 @@
 .login-form__fieldset {
-  display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 0;
+  margin: 0;
     padding: 0;
     border: none;
+    flex-direction: column;
+    display: flex;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-block-start: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    padding-block-end: 0;
 }

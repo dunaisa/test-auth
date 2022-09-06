@@ -47,11 +47,11 @@ const Table = ({ data, search, sortData }) => {
         <tbody className="table__container">
           <tr className="table__row">
             <th className="table__heading" onClick={() => { sortData('Name') }}>Name</th>
-            <th className="table__heading" >Position</th>
-            <th className="table__heading" >Office</th>
-            <th className="table__heading" >Age</th>
-            <th className="table__heading" >Start Date</th>
-            <th className="table__heading" >Salary</th>
+            <th className="table__heading" onClick={() => { sortData('Position') }}>Position</th>
+            <th className="table__heading" onClick={() => { sortData('Office') }}>Office</th>
+            <th className="table__heading" onClick={() => { sortData('Age') }}>Age</th>
+            <th className="table__heading" onClick={() => { sortData('StartDate') }}>Start Date</th>
+            <th className="table__heading" onClick={() => { sortData('Salary') }}>Salary</th>
           </tr>
           {search(currentItems).map((item) => (
 
@@ -61,7 +61,7 @@ const Table = ({ data, search, sortData }) => {
               <td className="table__cell">{item.Office}</td>
               <td className="table__cell">{item.Age}</td>
               <td className="table__cell">{item.StartDate}</td>
-              <td className="table__cell">{`$ ${item.Salary}`}</td>
+              <td className="table__cell">{item.Salary}</td>
             </tr>
           ))}
         </tbody>
