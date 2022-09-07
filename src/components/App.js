@@ -16,12 +16,6 @@ const App = () => {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
-  //Проверка на совпадение текущего токена с отправленным ранее при длит нахождении на стр
-
-  useEffect(() => {
-    tokenCheck()
-  }, [loggedIn])
-
   const history = useHistory();
 
   function handleOnRegister({ password, email }) {
@@ -60,8 +54,6 @@ const App = () => {
     history.push('/sign-in');
   }
 
-
-
   function tokenCheck(email) {
     // если у пользователя есть текущая почта в localStorage
     const currentjwtEmail = localStorage.getItem('currentemail', `${email}`);
@@ -75,7 +67,14 @@ const App = () => {
       localStorage.removeItem('currentpassword');
       history.push('/sign-in');
     }
+
   }
+
+  //Проверка на совпадение текущего токена с отправленным ранее при длит нахождении на стр
+
+  useEffect(() => {
+    tokenCheck()
+  }, [loggedIn])
 
   return (
     <>

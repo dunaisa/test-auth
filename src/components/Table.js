@@ -3,46 +3,32 @@ import ReactPaginate from 'react-paginate';
 
 const Table = ({ data, search, sortData }) => {
 
-  // const [items, setItems] = useState([]);
-
-  // useEffect(() => {
-  //   setItems(data)
-  // }, [data]);
-
-  // We start with an empty list of items.
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
 
   const itemsPerPage = 10;
 
   useEffect(() => {
-    // Fetch items from another resources.
     const endOffset = itemOffset + itemsPerPage;
 
-    //console.log(`Loading items from ${itemOffset} to ${endOffset}`);
 
     setCurrentItems(data.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(data.length / itemsPerPage));
 
   }, [itemOffset, itemsPerPage, data]);
 
-  // Invoke when user click to request another page.
   const handlePageClick = (event) => {
 
     const newOffset = (event.selected * itemsPerPage) % data.length;
 
-    // console.log(
-    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
-    // );
     setItemOffset(newOffset);
   };
 
 
   return (
     <>
+
       <table className="table">
         <tbody className="table__container">
           <tr className="table__row">
@@ -53,9 +39,9 @@ const Table = ({ data, search, sortData }) => {
             <th className="table__heading" onClick={() => { sortData('StartDate') }}>Start Date</th>
             <th className="table__heading" onClick={() => { sortData('Salary') }}>Salary</th>
           </tr>
-          {search(currentItems).map((item) => (
+          {search(currentItems).map((item, index) => (
 
-            <tr className="table__row" key={item.id}>
+            <tr className="table__row" key={index}>
               <td className="table__cell">{item.Name}</td>
               <td className="table__cell">{item.Position}</td>
               <td className="table__cell">{item.Office}</td>

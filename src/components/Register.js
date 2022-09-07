@@ -1,77 +1,86 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 const Register = ({ onRegister }) => {
 
-  //const [userName, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  //const [confirmPassword, setConfermPassword] = useState('');
-  //const [message, setMessage] = useState('');
-  //const history = useHistory();
+  const {
+    register,
+    formState: {
+      errors,
+      isValid
+    },
+    handleSubmit,
+    reset
+  } = useForm({
+    mode: "onChange"
+  });
 
-  // function handleNameChange(e) {
-  //   setUserName(e.target.value)
-  // }
-
-  function handleEmailChange(e) {
-    setEmail(e.target.value)
+  const onSubmit = (values) => {
+    onRegister(values);
+    reset();
   }
-
-  function handlePasswordChange(e) {
-    setPassword(e.target.value)
-  }
-
-  // function handleConfirmPasswordChange(e) {
-  //   setConfermPassword(e.target.value)
-  // }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    onRegister({ password, email });
-  }
-
 
   return (
     <div className="register">
       <h3 className="register__heading">Регистрация</h3>
 
-      <form action="post" className="register-form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)} className="register-form">
         <fieldset className="register-form__fieldset">
 
           <label htmlFor="email" className="register-form__field">
             <input
-              className="register-form__text"
+              {...register('email', {
+                required: "Поле обязательно к заполнению.",
+                pattern: {
+                  value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: 'Почта введена некорректно'
+                }
+
+              })}
+              className="register-form__input"
+
               id="email"
-              name="email"
               type="email"
-              value={email}
-              onChange={handleEmailChange}
-              placeholder="Email" />
+              placeholder="Электронный адрес" />
+
+            <span className="register-form__text_type_error">{errors.email && errors.email.message}</span>
+
           </label>
+
 
           <label htmlFor="password" className="register-form__field">
             <input
-              className="register-form__text"
+              className="register-form__input"
+              {...register('password', {
+                required: "Поле обязательно к заполнению.",
+                minLength: {
+                  value: 5,
+                  message: "Минимальная длина пароля 5 символов."
+                }
+              })}
               id="password"
-              name="password"
               type="password"
-              value={password}
-              onChange={handlePasswordChange}
               placeholder="Пароль" />
+
+            <span className="register-form__text_type_error">{errors.password && errors.password.message}</span>
           </label>
+
 
         </fieldset>
 
-        <button type="submit" className="register-form__btn">Зарегистрироваться</button>
+        <button
+          type="submit"
+          className={`register-form__btn ${!isValid ? "register-form__btn_disabled" : ''}`}
+          disabled={!isValid}>Зарегистрироваться</button>
 
       </form>
+
       <div className="register__signin">
         <span className="register__signin register__signin_text">Уже зарегистрированы?
         </span>
         <Link to="/sign-in" className="register__signin register__signin_link">Войти</Link>
       </div>
-
     </div>
   );
 }

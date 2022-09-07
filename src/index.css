@@ -26,8 +26,12 @@
 @import url(./blocks/register-form/register-form.css);
 @import url(./blocks/register-form/__fieldset/register-form__fieldset.css);
 @import url(./blocks/register-form/__field/register-form__field.css);
-@import url(./blocks/register-form/__text/register-form__text.css);
 @import url(./blocks/register-form/__btn/register-form__btn.css);
+@import url(./blocks/register-form/__btn/_disabled/register-form__btn_disabled.css);
+@import url(./blocks/register-form/__input/register-form__input.css);
+@import url(./blocks/register-form/__input/_type/register-form__input_type_error.css);
+@import url(./blocks/register-form/__text/register-form__text.css);
+@import url(./blocks/register-form/__text/_type/_error/register-form__text_type_error.css);
 
 @import url(./blocks/login/login.css);
 @import url(./blocks/login/__heading/login__heading.css);
@@ -52,3 +56,4 @@
 @import url(./blocks/pagination/pagination.css);
 @import url(./blocks/pagination/__link/pagination__link.css);
 @import url(./blocks/pagination/__link/_active/pagination__link_active.css);
+

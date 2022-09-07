@@ -1,95 +1,68 @@
 import React from 'react';
-import FormValidation from './FormValidation';
+import { useForm } from 'react-hook-form';
 
 const Login = ({ onLogin }) => {
 
   const {
-    values,
-    isErrors,
-    errorsMessage,
-    isFormNotValid,
-    setValues,
-    handleChange
-  } = FormValidation();
+    register,
+    formState: {
+      errors,
+      isValid
+    },
+    handleSubmit,
+    reset
+  } = useForm({
+    mode: "onChange"
+  });
 
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-
-  // //Стейты для вадидации
-
-  // const [inputError, setInputError] = useState(false);
-  // const [inputMessage, setInputMessage] = useState(false);
-
-  // function handleEmailChange(e) {
-  //   setEmail(e.target.value)
-  // }
-
-  // function handlePasswordChange(e) {
-  //   setPassword(e.target.value)
-  // }  
-
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   if (!password || !email) {
-  //     return
-  //   }
-  //   resetForm();
-  //   onLogin({ password, email });
-  // }
-
-  // React.useEffect(() => {
-  //   console.dir(isErrors)
-  //   console.dir(isFormNotValid)
-  //   console.dir(setValues)
-  //   console.dir(handleChange)
-  // }, [values]);
-
-  function resetForm() {
-    setValues(values);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    resetForm();
+  const onSubmit = (values) => {
     onLogin(values);
+    reset();
   }
 
   return (
     <div className="login">
       <h3 className="login__heading">Вход</h3>
 
-      <form onSubmit={handleSubmit} className="login-form">
+      <form onSubmit={handleSubmit(onSubmit)} className="login-form">
         <fieldset className="login-form__fieldset">
 
           <label htmlFor="email" className="login-form__field">
             <input
-              className={`login-form__input ${isErrors.email ? "login-form__input_type_error" : ""}`}
-              required
+              {...register('email', {
+                required: "Поле обязательно к заполнению.",
+                pattern: {
+                  value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: 'Почта введена некорректно'
+                }
+
+              })}
+              className="login-form__input"
+
               id="email"
-              name="email"
               type="email"
-              value={values.email}
-              onChange={handleChange}
               placeholder="Электронный адрес" />
 
-            <span className={`login-form__text ${isErrors.email ? "login-form__text_type_error" : ""}`}>{errorsMessage.email}</span>
+            <span className="login-form__text_type_error">{errors.email && errors.email.message}</span>
+
           </label>
 
 
           <label htmlFor="password" className="login-form__field">
             <input
-              className={`login-form__input ${isErrors.password ? "login-form__input_error_active" : ""}`}
-              required
+              className="login-form__input"
+              {...register('password', {
+                required: "Поле обязательно к заполнению.",
+                minLength: {
+                  value: 5,
+                  message: "Минимальная длина пароля 5 символов."
+                }
+              })}
               id="password"
-              name="password"
               type="password"
-              minLength="5"
-              maxLength="15"
-              value={values.password}
-              onChange={handleChange}
               placeholder="Пароль" />
 
-            <span className={`login-form__text ${isErrors.password ? "login-form__text_type_error" : ""}`}>{errorsMessage.password}</span>
+            <span className="login-form__text_type_error">{errors.password && errors.password.message}</span>
           </label>
 
 
@@ -97,12 +70,11 @@ const Login = ({ onLogin }) => {
 
         <button
           type="submit"
-          className={`login-form__btn ${!isFormNotValid ? "login-form__btn_disabled" : ""}`}
-          disabled={isFormNotValid}>Войти</button>
+          className={`login-form__btn ${!isValid ? "login-form__btn_disabled" : ''}`}
+          disabled={!isValid} >Войти</button>
 
       </form>
-
-    </div >
+    </div>
   );
 }
 
