@@ -5,4 +5,4 @@
 - JS
 - React
 
-Для пагинации возпользовалась react-paginate, для валидации - react-hook-form
+Для пагинации воспользовалась react-paginate, для валидации - react-hook-form
