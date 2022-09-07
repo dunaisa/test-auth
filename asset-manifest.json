@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/test-auth/static/css/main.c39316fc.css",
+    "main.js": "/test-auth/static/js/main.4f7b9502.js",
+    "static/media/search-icon.svg": "/test-auth/static/media/search-icon.56982c1a4d1ef20556e024945d6badc1.svg",
+    "index.html": "/test-auth/index.html",
+    "main.c39316fc.css.map": "/test-auth/static/css/main.c39316fc.css.map",
+    "main.4f7b9502.js.map": "/test-auth/static/js/main.4f7b9502.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c39316fc.css",
+    "static/js/main.4f7b9502.js"
+  ]
+}
