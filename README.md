@@ -8,4 +8,5 @@
 Для пагинации воспользовалась react-paginate, для валидации - react-hook-form
 
 ## gh-pages
-[https://dunaisa.github.io/sign-up](https://dunaisa.github.io/test-auth/)
+
+[https://dunaisa.github.io/test-auth/](https://dunaisa.github.io/test-auth/)
