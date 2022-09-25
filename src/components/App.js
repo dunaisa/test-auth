@@ -59,7 +59,7 @@ const App = () => {
     const currentjwtEmail = localStorage.getItem('currentemail', `${email}`);
     const jwtEmail = localStorage.getItem('email', `${email}`);
 
-    if (currentjwtEmail === jwtEmail) {
+    if (currentjwtEmail === jwtEmail && currentjwtEmail !== null) {
       setLoggedIn(true);
       history.push('/');
     } else {
@@ -67,7 +67,6 @@ const App = () => {
       localStorage.removeItem('currentpassword');
       history.push('/sign-in');
     }
-
   }
 
   //Проверка на совпадение текущего токена с отправленным ранее при длит нахождении на стр
