@@ -25,13 +25,13 @@ const List = () => {
   const positionsArray = ["Name"]
 
 
-  // function search(data) {
-  //   console.log('ok')
+  function search(data) {
+    console.log('ok')
 
-  //   return data.filter((item) =>
-  //     positionsArray.some((key) => item[key].toLowerCase().startsWith(query.toLowerCase()))
-  //   )
-  // }
+    return data.filter((item) =>
+      positionsArray.some((key) => item[key].toLowerCase().startsWith(query.toLowerCase()))
+    )
+  }
 
   ///Сортировка списка  
 
@@ -73,7 +73,7 @@ const List = () => {
 
       <Search query={query} handleInputChange={handleInputChange} />
 
-      {isLoading ? <Loader /> : <Table data={data} sortData={sortData} />}
+      {isLoading ? <Loader /> : <Table data={data} search={search} sortData={sortData} />}
 
     </main>
   );

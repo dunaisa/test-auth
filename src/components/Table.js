@@ -39,7 +39,7 @@ const Table = ({ data, search, sortData }) => {
             <th className="table__heading" onClick={() => { sortData('StartDate') }}>Start Date</th>
             <th className="table__heading" onClick={() => { sortData('Salary') }}>Salary</th>
           </tr>
-          {currentItems.map((item, index) => (
+          {search(currentItems).map((item, index) => (
 
             <tr className="table__row" key={index}>
               <td className="table__cell">{item.Name}</td>
